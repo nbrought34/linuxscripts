@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#this script is used to backup the user's home directory
+
+cd /home
+
+tar -cf /var/tmp/homebackup.tar $USER
+
+rm /var/tmp/homebackup.tar.gz > /dev/null
+
+gzip /var/tmp/homebackup.tar
+
+sudo scp /var/tmp/homebackup.tar.gz administrator@10.1.10.79:~
+echo
+echo "Transfer complete"
+echo
